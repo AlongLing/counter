@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:sqlite:E:/programSoft/sqlite/testDB.db
+    driver-class-name: org.sqlite.JDBC
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      timeout: 6000ms
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+mybatis-plus:
+  configuration:
+    jdbc-type-for-null: 'null'
