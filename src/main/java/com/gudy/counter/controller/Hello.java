@@ -1,4 +1,4 @@
-package com.gudy.counter.counter;
+package com.gudy.counter.controller;
 
 import com.gudy.counter.util.DbUtil;
 import org.springframework.beans.factory.annotation.Autowired;
