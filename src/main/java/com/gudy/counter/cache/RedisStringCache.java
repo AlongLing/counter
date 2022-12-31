@@ -1,15 +1,15 @@
 package com.gudy.counter.cache;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author lqs
+ * @author along
  * @version 1.0.0
  * @date 2022年12月11日 13:12:33
  * @packageName com.gudy.counter.cache

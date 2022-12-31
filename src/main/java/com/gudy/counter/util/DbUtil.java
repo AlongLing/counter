@@ -1,9 +1,12 @@
 package com.gudy.counter.util;
 
-import jakarta.annotation.PostConstruct;
+import com.google.common.collect.ImmutableMap;
+import com.gudy.counter.bean.res.Account;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author lqs
@@ -58,5 +61,61 @@ public class DbUtil {
             return res;
         }
     }
+
+    ////////////////////////////////身份认证///////////////////////////////////
+
+    /**
+     * 根据账号和密码查询用户
+     *
+     * @param uid
+     * @param password
+     * @return
+     */
+    public static Account queryAccount(long uid, String password) {
+        //Guava写法：ImmutableMap.of方法入参最多只能有5对,如果添加的数据超过5对,需要改用builder方法
+        return dbUtil.getSqlSessionTemplate().selectOne(
+                "userMapper.queryAccount",
+                ImmutableMap.of("Uid", uid, "Password", password)
+        );
+    }
+
+    /**
+     * 更新最近登录时间
+     *
+     * @param uid
+     * @param nowDate
+     * @param nowTime
+     */
+    public static void updateLoginTime(long uid, String nowDate, String nowTime) {
+        dbUtil.getSqlSessionTemplate().update(
+                "userMapper.updateAccountLoginTime",
+                ImmutableMap.of(
+                        "Uid", uid,
+                        "ModifyDate", nowDate,
+                        "ModifyTime", nowTime
+                )
+        );
+    }
+
+    /**
+     * 更新用户密码
+     *
+     * @param uid
+     * @param oldPwd
+     * @param newPwd
+     * @return
+     */
+    public static int updatePwd(long uid, String oldPwd, String newPwd) {
+        return dbUtil.getSqlSessionTemplate().update(
+                "userMapper.updatePwd",
+                ImmutableMap.of(
+                        "Uid", uid,
+                        "NewPwd", newPwd,
+                        "OldPwd", oldPwd
+                )
+        );
+    }
+
+    ////////////////////////////////资金类///////////////////////////////////
 
 }

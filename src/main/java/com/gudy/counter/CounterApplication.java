@@ -2,12 +2,12 @@ package com.gudy.counter;
 
 import com.gudy.counter.config.CounterConfig;
 import com.gudy.counter.util.DbUtil;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
 import thirdpart.uuid.GudyUuid;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 public class CounterApplication {
